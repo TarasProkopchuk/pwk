@@ -1,11 +1,13 @@
 public class Main {
     public static void main(String[] args) {
-        int[] tba = {1,2,3,4,5,6};
-        int[] test = {5,5,5,5,1};
-        show(filteeEvenIndexOddValue(tba));
-        System.out.println(findDominator(test));
+        int[] tab = {1,2,3,4,5,6};
+        int[] tab1 = {2,2,3,3,3};
+        show(filterEvenIndexOddValue(tab));
+        System.out.println(findDominant(tab1));
+        int[] tab3 = {1,2,3,4,5};
+        show(rotateArray(tab3,2));
     }
-    public static int[] filteeEvenIndexOddValue(int[] array){
+    public static int[] filterEvenIndexOddValue(int[] array){
         int count = 0;
         for (int i = 0; i < array.length; i++) {
             if (i % 2 == 0 && array[i] % 2 != 0) {
@@ -22,19 +24,37 @@ public class Main {
             }
         return result;
     }
-    public static int findDominator (int[] array) {
-        int[] tab = new int[array.length/2];
+    public static int findDominant (int[] array) {
+        int tab_length = array.length/2;
         int count = 0;
         int result =-1;
-        for (int i = 0; i < tab.length; i++) {
-            for (int j = 0; j < tab.length; j++) {
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array.length; j++) {
                 if (array[i] == array[j]) {
                     count++;
-                    if (count>tab.length){
+                    if (count>tab_length){
                        result = array[i];
+                       count=0;
                     }
                 }
             }
+        }
+        return result;
+    }
+    public static int[] rotateArray (int[] array, int positions){
+        int[] result = new int[array.length];
+        for (int i = 0; i <positions; i++){
+            for(int j =0; j <array.length; j++){
+                if (j==array.length-1){
+                    result[j-(array.length-1)] = array[j];
+                }
+                else{
+                    result[j+1] = array[j];
+                }
+            }
+                    for (int k = 0; k < array.length; k++){
+                    array[k] = result[k];
+                }
         }
         return result;
     }
